@@ -1,11 +1,8 @@
 import { join } from 'node:path'
 import express from 'express'
 import createError from 'http-errors'
-import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-
-import indexRouter from './routes/index.js'
-import usersRouter from './routes/users.js'
+import { homeController } from './controllers/homeController.js'
 
 const app = express()
 
@@ -21,17 +18,14 @@ app.use(logger('dev'))
 app.use(express.json())
 // transforms data sent by a form to a js object
 app.use(express.urlencoded({ extended: false }))
-// cookie parser to get cookies from client
-app.use(cookieParser())
 // set the folder where statis resources will be served
 app.use(express.static(join(import.meta.dirname, 'public')))
 
 // Routing
 
 // homepage
-app.use('/', indexRouter)
-// user page
-app.use('/users', usersRouter)
+app.all('/', homeController)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
