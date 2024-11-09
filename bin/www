@@ -7,6 +7,7 @@
 import { createServer } from 'node:http'
 import app from '../app.js'
 import debugLib from 'debug'
+import { databaseConnection } from '../lib/connectMongoDB.js'
 
 const debug = debugLib('npx-express-generator-ejs:server')
 
@@ -26,6 +27,13 @@ const server = createServer(app)
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+try {
+  await databaseConnection()
+  console.log('CONNECTED TO DATABASE')
+} catch (error) {
+  console.log('ERROR WITH FIRST CONNECTION TO DATABASE \n')
+}
 
 server.listen(port)
 server.on('error', onError)
