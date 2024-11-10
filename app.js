@@ -4,6 +4,8 @@ import createError from 'http-errors'
 import logger from 'morgan'
 import { homeController } from './controllers/homeController.js'
 import { isLoggedIn, middleware, useSessionInViews } from './lib/sessionManager.js'
+import { index, logout, postLogin} from './controllers/loginController.js'
+import { createProduct, deleteProduct, index as productIndex } from './controllers/productController.js'
 
 const app = express()
 
@@ -28,10 +30,17 @@ app.use(middleware, useSessionInViews)
 
 // homepage
 app.all('/', homeController)
+
 // login
+app.get('/login', index)
+app.post('/login', postLogin)
+app.get('/logout', logout)
 
 // products
 
+app.get('/createProduct', isLoggedIn, productIndex)
+app.post('/createProduct', isLoggedIn, createProduct)
+app.get('/deleteProduct/:productId', isLoggedIn, deleteProduct)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,0 +1,49 @@
+<%- include('header.ejs') %>
+
+<div class="container">
+
+  <h1>New Product</h1>
+
+  <form method="POST">
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Product Name</label>
+      <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+ 
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Price</label>
+      <input type="number" name="price" class="form-control" id="exampleInputPassword1">
+    </div>
+    
+    <div class="mb-3">
+      <label for="exampleInputCh" class="form-label">Url Image</label>
+      <input type="text" name="image" class="form-control" id="exampleInputCh" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputCh1" class="form-label">Work</label>
+      <input type="checkbox" value="work" name="tags" id="exampleInputCh1" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputCh2" class="form-label">Motor</label>
+      <input type="checkbox" value="motor" name="tags" id="exampleInputCh2" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputCh3" class="form-label">Mobile</label>
+      <input type="checkbox" value="mobile" name="tags" id="exampleInputCh3" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputCh4" class="form-label">Lifestyle</label>
+      <input type="checkbox" value="lifestyle" name="tags" id="exampleInputCh4" aria-describedby="emailHelp">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
+
+<%- include('footer.ejs') %>
