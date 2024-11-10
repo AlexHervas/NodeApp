@@ -3,6 +3,7 @@ import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
 import { homeController } from './controllers/homeController.js'
+import { isLoggedIn, middleware, useSessionInViews } from './lib/sessionManager.js'
 
 const app = express()
 
@@ -20,11 +21,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 // set the folder where statis resources will be served
 app.use(express.static(join(import.meta.dirname, 'public')))
+// use session manager middlewares
+app.use(middleware, useSessionInViews)
 
 // Routing
 
 // homepage
 app.all('/', homeController)
+// login
+
+// products
 
 
 // catch 404 and forward to error handler
